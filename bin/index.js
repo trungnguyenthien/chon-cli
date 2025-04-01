@@ -19,11 +19,12 @@ program
   .version(packageJson.version);
 
 program
-  .command('convert-img')
-  .description('Convert image to different format')
-  .argument('<input>', 'input image file path')
-  .argument('<format>', 'output format (png, jpg, gif, tiff, etc.)')
-  .action(convertImage);
+  .command('convert-img <input> <format>')
+  .description('Convert image to another format')
+  .option('-b, --background <color>', 'Background color for transparent areas (hex format, e.g. 0xffffff)', '0xffffff')
+  .action((input, format, options) => {
+    convertImage(input, format, options.background);
+  });
 
 program
   .command('check-dpi')

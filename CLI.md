@@ -15,20 +15,29 @@ Lệnh `convert-img` cho phép chuyển đổi định dạng của file ảnh s
 
 #### Cú pháp
 ```bash
-chon convert-img <input> <format>
+chon convert-img <input> <format> [options]
 ```
 
 #### Tham số
 - `input`: Đường dẫn đến file ảnh đầu vào
 - `format`: Định dạng ảnh đầu ra (png, jpg, gif, tiff, webp, etc.)
 
+#### Tùy chọn
+- `-b, --background <color>`: Màu nền cho vùng trong suốt (định dạng hex, ví dụ: 0xffffff). Mặc định là màu trắng (0xffffff)
+
 #### Ví dụ
 ```bash
 # Chuyển đổi ảnh JPG sang PNG
 chon convert-img input.jpg png
 
-# Chuyển đổi ảnh PNG sang JPEG
+# Chuyển đổi ảnh PNG sang JPEG với nền trắng (mặc định)
 chon convert-img logo.png jpg
+
+# Chuyển đổi ảnh PNG sang JPEG với nền đen
+chon convert-img logo.png jpg -b 0x000000
+
+# Chuyển đổi ảnh PNG sang JPEG với nền đỏ
+chon convert-img logo.png jpg --background 0xff0000
 
 # Chuyển đổi ảnh sang định dạng WebP
 chon convert-img photo.jpg webp
@@ -41,10 +50,11 @@ chon convert-img photo.jpg webp
 - Định dạng đầu ra phải là một định dạng ảnh hợp lệ được hỗ trợ bởi thư viện Sharp
 - DPI của ảnh gốc sẽ được giữ nguyên trong file đầu ra
 - Nếu ảnh gốc không có thông tin DPI, file đầu ra cũng sẽ không có thông tin DPI
-- Khi chuyển đổi từ định dạng có hỗ trợ độ trong suốt (alpha) như PNG sang JPG:
-  - Các vùng trong suốt sẽ được chuyển thành màu trắng
-  - Các vùng bán trong suốt sẽ được pha trộn với màu trắng theo tỷ lệ độ trong suốt
-  - Độ trong suốt sẽ bị mất hoàn toàn trong file JPG đầu ra
+- Khi chuyển đổi từ định dạng có hỗ trợ độ trong suốt (alpha) sang JPG:
+  - Các vùng trong suốt sẽ được thay thế bằng màu nền được chỉ định
+  - Các vùng bán trong suốt sẽ được pha trộn với màu nền theo tỷ lệ độ trong suốt
+  - Nếu không chỉ định màu nền, mặc định sẽ sử dụng màu trắng (0xffffff)
+  - Màu nền phải được chỉ định theo định dạng hex: 0xRRGGBB (ví dụ: 0xff0000 cho màu đỏ)
 
 ### 2. Check DPI
 Lệnh `check-dpi` cho phép kiểm tra thông tin DPI (Dots Per Inch) và các thông tin cơ bản khác của file ảnh.
