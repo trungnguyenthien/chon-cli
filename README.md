@@ -1,6 +1,6 @@
 # CHON CLI
 
-Công cụ dòng lệnh cho dự án NCKH, giúp bạn dễ dàng xử lý ảnh với các chức năng như chuyển đổi định dạng, kiểm tra và thay đổi DPI, và điều chỉnh kích thước ảnh.
+Công cụ dòng lệnh cho dự án CHON, giúp bạn dễ dàng xử lý ảnh với các chức năng như chuyển đổi định dạng, kiểm tra và thay đổi DPI, và điều chỉnh kích thước ảnh.
 
 ## Hướng dẫn cài đặt
 

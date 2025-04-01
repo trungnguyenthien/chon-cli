@@ -15,7 +15,7 @@ const packageJson = JSON.parse(readFileSync(join(__dirname, '../package.json'), 
 
 program
   .name('chon')
-  .description('NCKH CLI tool')
+  .description('CHON-CLI tool')
   .version(packageJson.version);
 
 program

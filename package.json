@@ -1,7 +1,7 @@
 {
-  "name": "nckh-cli",
+  "name": "chon-cli",
   "version": "1.0.0",
-  "description": "A CLI tool for NCKH project",
+  "description": "A CLI tool for CHON project",
   "type": "module",
   "main": "bin/index.js",
   "bin": {
@@ -13,7 +13,7 @@
   },
   "keywords": [
     "cli",
-    "nckh"
+    "chon"
   ],
   "author": "",
   "license": "ISC",

@@ -1,7 +1,7 @@
-# NCKH CLI Documentation
+# CHON CLI Documentation
 
 ## Overview
-NCKH CLI là một công cụ dòng lệnh cung cấp các tiện ích hữu ích cho dự án NCKH. Công cụ này hỗ trợ nhiều lệnh khác nhau để thực hiện các tác vụ phổ biến.
+CHON CLI là một công cụ dòng lệnh cung cấp các tiện ích hữu ích cho dự án CHON. Công cụ này hỗ trợ nhiều lệnh khác nhau để thực hiện các tác vụ phổ biến.
 
 ## Cài đặt
 ```bash
