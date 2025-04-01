@@ -1,8 +1,20 @@
 # CHON CLI
 
-Công cụ dòng lệnh cho dự án CHON, giúp bạn dễ dàng xử lý ảnh với các chức năng như chuyển đổi định dạng, kiểm tra và thay đổi DPI, và điều chỉnh kích thước ảnh.
+Công cụ dòng lệnh cho dự án NCKH, giúp bạn dễ dàng xử lý ảnh với các chức năng như chuyển đổi định dạng, kiểm tra và thay đổi DPI, và điều chỉnh kích thước ảnh.
 
-## Hướng dẫn cài đặt
+## Cài đặt nhanh
+
+### Cài đặt từ npm registry
+```bash
+npm install -g chon-cli
+```
+
+### Cài đặt từ GitHub release
+```bash
+npm install -g https://github.com/trungnguyenthien/chon-cli/releases/download/1.0/chon-cli-1.0.0.tgz
+```
+
+## Hướng dẫn cài đặt chi tiết
 
 ### 1. Cài đặt Node.js
 
@@ -39,32 +51,6 @@ Công cụ dòng lệnh cho dự án CHON, giúp bạn dễ dàng xử lý ảnh
      npm --version
      ```
 
-### 2. Cài đặt CHON CLI
-
-#### Trên Windows:
-1. Mở Command Prompt (cmd) với quyền Administrator:
-   - Nhấn Windows + X
-   - Chọn "Windows PowerShell (Admin)" hoặc "Command Prompt (Admin)"
-2. Di chuyển đến thư mục chứa mã nguồn:
-   ```bash
-   cd đường_dẫn_đến_thư_mục_chứa_mã_nguồn
-   ```
-3. Cài đặt CHON CLI:
-   ```bash
-   npm install -g .
-   ```
-
-#### Trên macOS:
-1. Mở Terminal
-2. Di chuyển đến thư mục chứa mã nguồn:
-   ```bash
-   cd đường_dẫn_đến_thư_mục_chứa_mã_nguồn
-   ```
-3. Cài đặt CHON CLI:
-   ```bash
-   npm install -g .
-   ```
-
 ## Cách sử dụng
 
 Sau khi cài đặt, bạn có thể sử dụng CHON CLI bằng cách gõ `chon` theo sau là các lệnh:
@@ -75,17 +61,20 @@ chon --help
 
 # Xem phiên bản
 chon --version
-
-# Lệnh chào hỏi
-chon greet
-chon greet --name "Tên của bạn"
 ```
 
 ## Các lệnh chính
 
 ### 1. Chuyển đổi định dạng ảnh
 ```bash
-chon convert-img input.jpg png
+# Chuyển đổi ảnh PNG sang JPEG với nền trắng (mặc định)
+chon convert-img logo.png jpg
+
+# Chuyển đổi ảnh PNG sang JPEG với nền đen
+chon convert-img logo.png jpg -b 0x000000
+
+# Chuyển đổi ảnh PNG sang JPEG với nền đỏ
+chon convert-img logo.png jpg --background 0xff0000
 ```
 
 ### 2. Kiểm tra DPI của ảnh
@@ -100,39 +89,20 @@ chon change-dpi photo.jpg 300
 
 ### 4. Điều chỉnh kích thước ảnh
 ```bash
+# Scale ảnh để chiều rộng là 400px
 chon scale-img ./images 400-x
-```
 
-## Phát triển
+# Scale ảnh để chiều cao là 600px
+chon scale-img ./images x-600
 
-Nếu bạn muốn phát triển hoặc tùy chỉnh CHON CLI:
-
-1. Clone repository này về máy
-2. Cài đặt các thư viện cần thiết:
-```bash
-npm install
-```
-
-3. Liên kết package locally:
-```bash
-npm link
-```
-
-4. Code sẽ tự động được định dạng bằng Prettier khi bạn lưu các file có đuôi:
-- .js
-- .json
-- .md
-- .html
-- .xml
-- .yaml
-- .yml
-
-Để định dạng thủ công tất cả các file:
-```bash
-npm run format
+# Scale ảnh để vừa với khung 400x600
+chon scale-img ./images 400-600
 ```
 
 ## Lưu ý
 - Đảm bảo bạn đã cài đặt Node.js trước khi cài đặt CHON CLI
 - Nếu gặp lỗi về quyền truy cập, hãy thử chạy lệnh với quyền Administrator (Windows) hoặc thêm `sudo` (macOS)
-- Nếu cần gỡ cài đặt, sử dụng lệnh: `npm uninstall -g chon-cli` 
+- Nếu cần gỡ cài đặt, sử dụng lệnh: `npm uninstall -g chon-cli`
+
+## Tài liệu chi tiết
+Xem thêm tài liệu chi tiết về cách sử dụng trong file [CLI.md](CLI.md) 
