@@ -2,14 +2,9 @@
 
 Công cụ dòng lệnh cho dự án NCKH, giúp bạn dễ dàng xử lý ảnh với các chức năng như chuyển đổi định dạng, kiểm tra và thay đổi DPI, và điều chỉnh kích thước ảnh.
 
-## Cài đặt nhanh
+## Cài đặt
 
-### Cài đặt từ npm registry
-```bash
-npm install -g chon-cli
-```
-
-### Cài đặt từ GitHub release
+Chạy lệnh sau để cài đặt CHON CLI:
 ```bash
 npm install -g https://github.com/trungnguyenthien/chon-cli/releases/download/1.0/chon-cli-1.0.0.tgz
 ```
