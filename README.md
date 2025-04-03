@@ -4,9 +4,43 @@ Công cụ dòng lệnh cho dự án NCKH, giúp bạn dễ dàng xử lý ảnh
 
 ## Cài đặt
 
-Chạy lệnh sau để cài đặt CHON CLI:
+### Gỡ cài đặt phiên bản cũ (nếu có)
 ```bash
-npm install -g https://github.com/trungnguyenthien/chon-cli.git#latest
+npm uninstall -g chon-cli
+```
+
+### Cách 1: Cài đặt trực tiếp (có thể hiển thị cảnh báo)
+```bash
+npm uninstall -g https://github.com/trungnguyenthien/chon-cli#latest
+npm install -g https://github.com/trungnguyenthien/chon-cli#latest
+```
+
+### Cách 2: Cài đặt với tắt cảnh báo
+```bash
+NODE_NO_WARNINGS=1 npm install -g https://github.com/trungnguyenthien/chon-cli.git#main
+```
+
+### Cách 3: Cài đặt từ npm registry (nếu đã publish)
+```bash
+npm install -g chon-cli
+```
+
+### Cách 4: Cài đặt từ source code
+```bash
+# Clone repository
+git clone https://github.com/trungnguyenthien/chon-cli.git
+cd chon-cli
+
+# Cài đặt dependencies
+npm install
+
+# Link package globally
+npm link
+```
+
+### Cách 5: Cài đặt với force (nếu gặp lỗi EEXIST)
+```bash
+npm install -g --force https://github.com/trungnguyenthien/chon-cli.git#main
 ```
 
 ## Hướng dẫn cài đặt chi tiết
