@@ -94,6 +94,27 @@ chon scale-img ./images x-600
 chon scale-img ./images 400-600
 ```
 
+### 5. Kiểm tra và sửa ảnh theo yêu cầu
+```bash
+# Kiểm tra và sửa ảnh theo yêu cầu về DPI và kích thước
+chon formal-img -dpi 300 -mm 100 image.jpg
+
+# Xử lý nhiều ảnh cùng lúc
+chon formal-img -dpi 300 -mm 100 *.jpg *.png
+
+# Xử lý ảnh trong thư mục
+chon formal-img -dpi 300 -mm 100 ./images/*
+```
+
+Lệnh này sẽ:
+- Kiểm tra DPI và kích thước của ảnh
+- Tự động sửa ảnh nếu không đạt yêu cầu:
+  + Tăng DPI nếu thấp hơn yêu cầu
+  + Chuyển đổi định dạng sang PNG nếu không phải định dạng được hỗ trợ
+  + Scale ảnh nếu kích thước nhỏ hơn yêu cầu
+- Tạo file mới với hậu tố "_fixed" thay vì ghi đè file gốc
+- Hiển thị báo cáo chi tiết về trạng thái trước và sau khi xử lý
+
 ## Lưu ý
 - Đảm bảo bạn đã cài đặt Node.js trước khi cài đặt CHON CLI
 - Nếu gặp lỗi về quyền truy cập, hãy thử chạy lệnh với quyền Administrator (Windows) hoặc thêm `sudo` (macOS)

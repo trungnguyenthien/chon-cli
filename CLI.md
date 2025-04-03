@@ -158,44 +158,61 @@ chon scale-img ./images 400-600
 - Nếu một file ảnh không thể xử lý, lệnh sẽ tiếp tục xử lý các file khác và hiển thị thông báo lỗi cho file đó 
 
 ### 5. Formal Image
-Lệnh `formal-img` kiểm tra và tự động sửa các ảnh để đáp ứng các yêu cầu về DPI, định dạng và kích thước.
+Kiểm tra và sửa ảnh theo yêu cầu về DPI, định dạng và kích thước.
 
-#### Cú pháp
 ```bash
-chon formal-img -dpi <min_dpi> -mm <min_size> -file <image1> <image2> ... <imageN>
+chon formal-img -dpi <number> -mm <number> <images...>
 ```
 
 #### Tham số
-- `-dpi <min_dpi>`: DPI tối thiểu cần đạt (bắt buộc)
-- `-mm <min_size>`: Kích thước tối thiểu theo mm (bắt buộc)
-- `-file <image1> <image2> ... <imageN>`: Danh sách các file ảnh cần xử lý (bắt buộc)
+- `-dpi <number>`: DPI tối thiểu yêu cầu (bắt buộc)
+- `-mm <number>`: Kích thước tối thiểu theo millimeters (bắt buộc)
+- `<images...>`: Danh sách các file ảnh cần xử lý (bắt buộc)
 
 #### Ví dụ
 ```bash
-# Kiểm tra và sửa ảnh với DPI tối thiểu 300 và kích thước tối thiểu 100mm
-chon formal-img -dpi 300 -mm 100 -file image1.jpg image2.png image3.tiff
+# Kiểm tra và sửa một ảnh
+chon formal-img -dpi 300 -mm 100 image.jpg
+
+# Xử lý nhiều ảnh
+chon formal-img -dpi 300 -mm 100 *.jpg *.png
+
+# Xử lý ảnh trong thư mục
+chon formal-img -dpi 300 -mm 100 ./images/*
 ```
 
-#### Kết quả
+#### Chi tiết
+Lệnh này sẽ:
+1. Kiểm tra từng ảnh theo các tiêu chí:
+   - DPI có đạt yêu cầu tối thiểu không
+   - Định dạng có được hỗ trợ không (jpg, jpeg, png, tiff)
+   - Kích thước có đạt yêu cầu tối thiểu không
+
+2. Nếu ảnh không đạt yêu cầu, sẽ tự động:
+   - Tăng DPI nếu thấp hơn yêu cầu
+   - Chuyển đổi sang PNG nếu không phải định dạng được hỗ trợ
+   - Scale ảnh nếu kích thước nhỏ hơn yêu cầu
+
+3. Kết quả:
+   - File gốc được giữ nguyên
+   - File mới được tạo với hậu tố "_fixed"
+   - Hiển thị báo cáo chi tiết về trạng thái trước và sau khi xử lý
+
+#### Output
 Lệnh sẽ hiển thị hai bảng:
-1. Bảng trạng thái ban đầu của các ảnh, bao gồm:
-   - Tên file
-   - Định dạng
-   - DPI hiện tại
-   - Kích thước theo mm (chiều rộng và chiều cao)
-   - Trạng thái (OK/NG)
+1. Bảng "Initial Status": Hiển thị trạng thái ban đầu của các ảnh
+2. Bảng "Final Status": Hiển thị trạng thái sau khi xử lý
 
-2. Bảng trạng thái sau khi xử lý, hiển thị thông tin tương tự cho các file đã được sửa.
-
-#### Xử lý tự động
-Nếu ảnh không đáp ứng yêu cầu, lệnh sẽ tự động:
-- Tăng DPI nếu thấp hơn yêu cầu
-- Chuyển đổi sang định dạng PNG nếu không phải định dạng được hỗ trợ
-- Scale ảnh để đạt kích thước tối thiểu theo mm
+Mỗi bảng hiển thị:
+- File: Tên file
+- Format: Định dạng ảnh
+- DPI: Độ phân giải
+- Width (mm): Chiều rộng theo millimeters
+- Height (mm): Chiều cao theo millimeters
+- Status: Trạng thái (OK/NG)
+- Note: Ghi chú về các thay đổi (nếu có)
 
 #### Lưu ý
-- Các định dạng ảnh được hỗ trợ: JPG, JPEG, PNG, TIFF
-- File đã sửa sẽ được lưu với hậu tố "_formal" trong cùng thư mục với file gốc
-- File gốc sẽ không bị thay đổi
-- Nếu ảnh đã đáp ứng tất cả yêu cầu, sẽ được đánh dấu là "OK" và không bị sửa đổi
-- Kích thước tối thiểu được tính theo mm, và ít nhất một cạnh phải đạt kích thước này 
+- Các giá trị không đạt yêu cầu sẽ được hiển thị màu đỏ
+- Các giá trị đạt yêu cầu sẽ được hiển thị màu xanh
+- Nếu xử lý thất bại, sẽ hiển thị thông báo lỗi cụ thể 
