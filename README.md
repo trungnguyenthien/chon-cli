@@ -6,7 +6,7 @@ Công cụ dòng lệnh cho dự án NCKH, giúp bạn dễ dàng xử lý ảnh
 
 Chạy lệnh sau để cài đặt CHON CLI:
 ```bash
-npm install -g https://github.com/trungnguyenthien/chon-cli/releases/download/1.0/chon-cli-1.0.0.tgz
+npm install -g https://github.com/trungnguyenthien/chon-cli.git#latest
 ```
 
 ## Hướng dẫn cài đặt chi tiết

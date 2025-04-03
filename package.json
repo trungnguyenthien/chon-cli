@@ -18,6 +18,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^5.4.1",
+    "cli-table3": "^0.6.5",
     "commander": "^11.1.0",
     "lodash": "^4.17.21",
     "sharp": "^0.33.2"
@@ -25,4 +27,4 @@
   "devDependencies": {
     "prettier": "^3.2.5"
   }
-} 
+}

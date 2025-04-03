@@ -8,6 +8,8 @@ import { convertImage } from '../lib/commands/convert-img.js';
 import { checkDpi } from '../lib/commands/check-dpi.js';
 import { changeDpi } from '../lib/commands/change-dpi.js';
 import { scaleImage } from '../lib/commands/scale-img.js';
+import { formalImage } from '../lib/commands/formal-img.js';
+import chalk from 'chalk';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -45,5 +47,35 @@ program
   .argument('<directory>', 'directory containing images')
   .argument('<size>', 'size pattern (e.g., 400-x, x-600, 400-600)')
   .action(scaleImage);
+
+program
+  .command('formal-img')
+  .description('Check and fix image requirements')
+  .requiredOption('-dpi <number>', 'Minimum DPI required')
+  .requiredOption('-mm <number>', 'Minimum size in millimeters')
+  .argument('<images...>', 'Image files to process')
+  .action((images, options) => {
+    console.log('\n=== Raw Parameters ===');
+    console.log('options:', options);
+    console.log('options.Dpi:', options.Dpi, 'Type:', typeof options.Dpi);
+    console.log('options.Mm:', options.Mm, 'Type:', typeof options.Mm);
+    console.log('images:', images, 'Type:', typeof images);
+    console.log('Number of images:', images.length);
+    
+    const minDpi = parseInt(options.Dpi, 10);
+    const minSizeMm = parseFloat(options.Mm);
+    
+    console.log('\n=== Parsed Parameters ===');
+    console.log('minDpi:', minDpi, 'Type:', typeof minDpi);
+    console.log('minSizeMm:', minSizeMm, 'Type:', typeof minSizeMm);
+    console.log('=====================\n');
+    
+    if (isNaN(minDpi) || isNaN(minSizeMm)) {
+      console.error(chalk.red('Error: DPI and size must be valid numbers'));
+      process.exit(1);
+    }
+    
+    formalImage(minDpi, minSizeMm, images);
+  });
 
 program.parse(); 

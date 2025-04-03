@@ -156,3 +156,46 @@ chon scale-img ./images 400-600
 - File gốc sẽ không bị thay đổi
 - Hỗ trợ các định dạng ảnh: PNG, JPG, JPEG, BMP, GIF, TIFF, WebP
 - Nếu một file ảnh không thể xử lý, lệnh sẽ tiếp tục xử lý các file khác và hiển thị thông báo lỗi cho file đó 
+
+### 5. Formal Image
+Lệnh `formal-img` kiểm tra và tự động sửa các ảnh để đáp ứng các yêu cầu về DPI, định dạng và kích thước.
+
+#### Cú pháp
+```bash
+chon formal-img -dpi <min_dpi> -mm <min_size> -file <image1> <image2> ... <imageN>
+```
+
+#### Tham số
+- `-dpi <min_dpi>`: DPI tối thiểu cần đạt (bắt buộc)
+- `-mm <min_size>`: Kích thước tối thiểu theo mm (bắt buộc)
+- `-file <image1> <image2> ... <imageN>`: Danh sách các file ảnh cần xử lý (bắt buộc)
+
+#### Ví dụ
+```bash
+# Kiểm tra và sửa ảnh với DPI tối thiểu 300 và kích thước tối thiểu 100mm
+chon formal-img -dpi 300 -mm 100 -file image1.jpg image2.png image3.tiff
+```
+
+#### Kết quả
+Lệnh sẽ hiển thị hai bảng:
+1. Bảng trạng thái ban đầu của các ảnh, bao gồm:
+   - Tên file
+   - Định dạng
+   - DPI hiện tại
+   - Kích thước theo mm (chiều rộng và chiều cao)
+   - Trạng thái (OK/NG)
+
+2. Bảng trạng thái sau khi xử lý, hiển thị thông tin tương tự cho các file đã được sửa.
+
+#### Xử lý tự động
+Nếu ảnh không đáp ứng yêu cầu, lệnh sẽ tự động:
+- Tăng DPI nếu thấp hơn yêu cầu
+- Chuyển đổi sang định dạng PNG nếu không phải định dạng được hỗ trợ
+- Scale ảnh để đạt kích thước tối thiểu theo mm
+
+#### Lưu ý
+- Các định dạng ảnh được hỗ trợ: JPG, JPEG, PNG, TIFF
+- File đã sửa sẽ được lưu với hậu tố "_formal" trong cùng thư mục với file gốc
+- File gốc sẽ không bị thay đổi
+- Nếu ảnh đã đáp ứng tất cả yêu cầu, sẽ được đánh dấu là "OK" và không bị sửa đổi
+- Kích thước tối thiểu được tính theo mm, và ít nhất một cạnh phải đạt kích thước này 
